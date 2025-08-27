@@ -1,0 +1,158 @@
+<p><strong>How to get a comet named after you ? </strong>
+</p>
+<p>William is an astronomer in the 1800s. Night after night, he collected data on a specific comet’s orbit, shown below.</p>
+<p>Will knows the orbit should be elliptical, but its exact shape is hard to determine. Soon, the comet will be blocked by the sun, and he won’t be able to directly measure its position. So, using his data, how could Will make a model to predict the comet’s orbit (and hopefully get a comet named after him)?</p>
+<p><strong>Regressions</strong>
+</p>
+<p>What Will needs is a <strong>regression </strong>model. A regression model has three parts:</p>
+<ul>
+    <li>
+        <p>Sample of data points</p>
+    </li>
+    <li>
+        <p>A prediction model based on the sample data set (an equation)</p>
+    </li>
+    <li>
+        <p>An error function that gives you a measure of how “good” the prediction is for the data</p>
+    </li>
+</ul>
+<p>The goal: A regression equation that makes the error as small as possible, and fits the best.</p>
+<p><strong>Linear Regressions</strong>
+</p>
+<p>Let’s start simple. Imagine the comet is a freeflying comet, without gravity. Then it would drift out in a straight line, a much simpler path. For the sake of example, let the observations be p ={(0,3), (2, 5), (4, 9), (6,10), (11, 20)}. We can define a function g(x) that matches the data: g(0)= 3, g(2) = 5, and so on. Our goal is to find another function f(x) the error function between f(x) and g(x). But that raises the question:</p>
+<p><em>What should the error function be”?</em>
+</p>
+<p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</p>
+<p><strong>Method of Least Squares</strong>
+</p>
+<p>A natural choice is the sum of the squares of the residuals:</p>
+<p>Error = i=1n(f(xi)-g(xi))2</p>
+<p>The terms ri=f(xi)-g(xi) are the residuals of our prediction. We square them so negatives don’t cancel out, and bigger mistakes get more weight ..</p>
+<p>Minimizing this error function gives us what’s called the <strong>Best Linear Unbiased Estimation (BLUE)</strong>. To see what this means, let’s break it down, piece by piece.</p>
+<p><strong>Estimation</strong>: f(x) is a prediction model.</p>
+<p><strong>Unbiased</strong>: When we minimize our error function, the residuals average 0. Think of darts on a target:</p>
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe3phwDfqK4u3AIxVx4GCWbmoqo4kK2iygUVlC4Gu321mueJB8d7ZApZ4K6QHfqQOEF8ehUiz84G1yzatuZYiecb-nhGll0-JSkoR9vIoB3yPa3D97w50NfkHBHbcWJpAE06qzaew?key=Htpd89bIWzeNbhCquZM3fw">
+<p>Pretend these two targets represent our residuals. Notice how team A’s shots are centered around the bullseye, while Team B’s are shifted down and to the left. Although both are consistent, Team A’s shots are considered unbiased, because they roughly fall around the center of the target.</p>
+<p>
+    <br>
+    <br>
+    <br>
+</p>
+<p><strong>Linear</strong>: The function is a linear combination of our input(s). Yes, you can do a regression using multiple input parameters. We will talk about this later.</p>
+<p><strong>Best</strong>: Among all the unbiased models, the one we want is the one with the smallest variance.. To understand why we want this, let's return back to targets.</p>
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe2o-1pg7BADm7NNlhcKmhejhk7KdFJqBq_qzCBSxVj-2wnOg1pv4jm9BhPjXNES-cc_NeiHWN4tY6b-0vCXVgSeEN5Gscx2xXxN07kJqj9ZCufSQ6XgzlCrbmEe9ZOJ1X5NXsnOg?key=Htpd89bIWzeNbhCquZM3fw">
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdX0R1teRJvQ6SWCHdY1uHFHuzYQJZKNSyAtGiyAvCtxJ9M7L9F0iBcpfUDigvOToo0i3jN-jC0gKn1AxD5JmDxhpg-8CXhPXoEaTLgnsuZ-sqaAjwWBc_fSG9qKOxXD9HAT4cxmQ?key=Htpd89bIWzeNbhCquZM3fw">
+<p>Again, pretend these two targets are our metaphor for the residuals. Notice how both of them are roughly centered around the origin, so both are unbiased. However, Team A’s shots are more tightly clustered, so there is less variance. This gives us more confidence in their accuracy, compared to Team C.</p>
+<p>We will revisit this idea of <em>Best</em> later. An intuitive proof requires a matrix representation, which may be complicated without an example.</p>
+<p>The main idea is we want our errors to cluster tightly around zero, like Team A’s shot clustering around the bullseye.</p>
+<p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</p>
+<p><strong>Finishing our Example</strong>
+</p>
+<p>Let's apply this to our example. Since f(x) is a linear function, we can write it as f(x)=ax+b</p>
+<p>The residuals are then: ri= axi+b-g(xi).</p>
+<p>So the error function then becomes: riri2= xi (axi+b-g(xi))2= (0(a)+b -3 )2+(2(a)+b-5)2+ . . . +(11(a) +b-20)2</p>
+<p>Expanding and simplifying, we end up with a big quadratic expression in a and b:</p>
+<p>riri2= 177a2+46ab+5b2-652a-94b+615.</p>
+<p>This large function traces out a multivariable function that looks a lot like a parabola. This shouldn’t be too surprising, given that our function contains the quadratic terms of a and b.</p>
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdOMuI9Gg8i1ZCZuDZROJmGKjRRQLuztSOPXdibpxjGwN5DOnlPOS_5B-bmmob7Ka1ZVx4wGocXfG0tJFi9pDDGwJZSNz_RKgtZr5PR8sCZE0VSAVUqIGy3a6P7C9cq0Hpuejv9jA?key=Htpd89bIWzeNbhCquZM3fw">
+<p>
+    <br>
+    <br>
+</p>
+<p>To find our minimum point, we can set the partial derivatives of our function to 0 and solve.</p>
+<p>In the end, the solutions come out to be (549356,821356). Not the prettiest numbers, but it works as an example.</p>
+<p>Looking back at what this means, our desired linear regression is y=549356x+821356 ∎</p>
+<p>A pretty good fit indeed!</p>
+<p><strong>Revisiting the Method of Least Squares</strong>
+</p>
+<p>So why does the method of least squares give us the Best Linear Unbiased Estimation (BLUE)?</p>
+<p>Let be the mean of the data set. Then, the variance of the system is defined as:</p>
+<p>Our =0, because our errors are unbiased. Since n is a constant, minimizing variance in our errors is the same as minimizing</p>
+<p>which is our method of least squares, so our method minimizes variance.</p>
+<p>This might seem abstract, so maybe we should try a geometric view. In order to do this, we must introduce some matrix notation.</p>
+<p>We have an output vector (our data), <strong>y</strong>, that is some linear function of an input matrix, <strong>X</strong>, offset by some errors . In the matrix form our system then can be written as: y = X+, where is the correlation we are trying to find. Our goal is to find y=X that best approximates our sample output set. This allows us to compactly write the whole data set in one equation. In the last example:</p>
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXegBfS4YqXdt5NE4n47lITuU4D17jbZNkNta29VvMmNTAqt66CsyjfpxcUcFbWt7ZGaywDMiBq5y08ZxpLWrM8KCa_SLMYIWa2CYfSrI-zJOhNMqbk_78VmZt-C3ws3QNOqh7Q0?key=Htpd89bIWzeNbhCquZM3fw">
+<p>
+    <br>
+    <br>
+</p>
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeJPYms1BJ15AF7NPtqY2vRUue-inhs6Ua-WkXW1pbNCraJnAGf5pEJt1D5Ey_U77h7470WUHSwGymiUZTl0OAAW4giFFR1NKLtNPkRN_oYqrAkET9kAGFGoz2Ed31EQA7SzrPqvg?key=Htpd89bIWzeNbhCquZM3fw">
+<p>This allows for a geometric view using vector span.</p>
+<p>In the diagram to the right, the green area represents the column space of X. The column space is the span of the columns of X. Simply put, it is the space where all possible vectors y=X live. For our above example, that is a 2D plane in a 5D space. For the sake of visualization, the diagram is a 2D plane in a 3D space. Since y is usually not on the column space, any y will be slightly off from the actual y. This residual vector will be =y-y=y-X. The goal is to minimize this vector’s length, or . Since this is positive, it works to minimize 2. This works better by avoiding square roots. Also, notice that this is the same thing as our sum of the squares method, since this equals e12+e22+...+en2= i=1nei2=i=1n(yi-yi)2. Thus, by projecting y into the space of possible predictions, we’re guaranteed the smallest possible variance of errors. This proves that it minimizes the variation, and therefore satisfies the “Best” part of BLUE.</p>
+<p><strong>Adapting the method</strong>
+</p>
+<p>So, what if I want a quadratic regression? An exponential? Something even crazier?</p>
+<p>Let’s start with polynomials first. Notice that since our output can have n different inputs. If we let these be powers of xi, then the regression describes a polynomial. In other words, if we let</p>
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfGLveaNJouBiudZDJnUZtmmuHlnfUtCaU31K2dwoHxK2OIV_OcVZRkW9Vc6YntFwblofBdNUnTxE86W1dfxP6HoMTxVCyEC2o7O7igT5j-ONqLh5H-8yS83eLcVF6PaMhNl8eQBw?key=Htpd89bIWzeNbhCquZM3fw">
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdAvtSHy83bW_nAwg5jwKQgb5PtnHO3F7IgcgnWmORV80zEgjV2kxe0x3J9_8AxFNg3B4Qm4rTHgNj-hyzGNLtdE3m1z9jvFGIKgRLRK2JyYoVqI_Ucdioq3V4s8tZI4_5LSw3F?key=Htpd89bIWzeNbhCquZM3fw">
+<p>Then</p>
+<p>
+    <br>
+    <br>
+    <br>
+</p>
+<p>where xkT is the kth row of X. So, we can model any nth degree polynomial using this method.</p>
+<p>What about exponentials? Exponentials are not linear, so we can’t directly apply our standard linear least squares method. So, is that it? Is our method limited to polynomials and nothing else?</p>
+<p>
+    <br>
+    <br>
+    <br>
+</p>
+<p><strong>Nonlinear Regressions</strong>
+</p>
+<p>The general nonlinear regression doesn’t have a closed form for the best parameters.</p>
+<p>However, this doesn’t mean we can’t solve them. For example, take our exponential regression of the form y=abxU, where U is the error term. We can take the logarithm of both sides to get ln(y)=ln(a)+x ln(b)+ln(U). If we let x'=x, y'=ln(y), m =ln(b), c=ln(a), =ln(U), our equation becomes y'=mx'+c+. Yay! Now we have a linear regression that we know how to solve! We can use the above methods to solve for m and c, and exponentiate them to get a and b (remember, b=em,a=ec). Ingenious, right? Except there’s a small problem that you may have noticed. In our exponential regression, our error term is multiplicative, not additive. Does this mean the Method of Least Squares doesn’t apply anymore? In fact, the variance stays minimized, but the bias increases. This can be corrected using a smearing estimator as an approximation.I won’t go into the details here, but for those interested in learning more, I have included links at the end for more information.</p>
+<p>What about something harder, like y ~ arx+bsx ? Or y ~ axb(notice how this differs from an exponential)? Or y ~ (ax2.718)+sin(bx)+logc(x)!? As I said before, the general nonlinear regression doesn't have an <em>exact </em>solution. However, we can use gradient descent to fine tune our parameters to an arbitrary level of precision. We start with random parameters. Then we take the gradient of our variation, or i=1n(yi-f(xi:)) with respect to our parameters 1, 2, ... ,n. We use this gradient vector to find the direction of steepest <em>descent</em>. With each iteration, our parameters become more accurate, and we can repeat this process to an arbitrary degree of precision.</p>
+<p>
+    <br>
+    <br>
+</p>
+<p><strong>Applications</strong>
+</p>
+<p>So, now to answer the age old question in math:</p>
+<p><em>When will I ever use this?</em>
+</p>
+<p>The answer: pretty much everywhere data exists.</p>
+<p>Regressions are extremely useful tools for predictions. They are used in fields of</p>
+<ul>
+    <li>
+        <p>Economics? Stock market modeling and macroeconomics</p>
+    </li>
+    <li>
+        <p>Healthcare? Logistic regressions for diagnosis can predict whether a patient has a certain disease based on the symptoms</p>
+    </li>
+    <li>
+        <p>Engineering? Regression help forecast rising energy demands in an ever-growing world</p>
+    </li>
+    <li>
+        <p>Sports analysts? They use it to predict game outcomes.</p>
+    </li>
+    <li>
+        <p>Politics? Trends from previous ballots can be used to predict election outcomes.</p>
+    </li>
+    <li>
+        <p>Music? From audio signal modeling to even predicting notes for a melody, regressions have their place in music.</p>
+    </li>
+</ul>
+<p>And for perhaps the most substantial one of them all, regressions are essential for artificial intelligence, where they are used for training the AI, evaluating its performance, and even predicting how useful the AI will be.</p>
+<p>If you can model the data with a function, usually you can use a regression model.</p>
+<p>However, there are a few places where regressions fall short, mainly due to the data violating one of our assumptions. This includes when the relationship can’t be modelled by a function, when the errors are not independent of each other, or when the regression is too complicated for the data i.e. a quadratic regression on two points. If the data is too small for the problem, the regression could be misleading. Nevertheless, even with their flaws, regressions can reveal patterns we’d otherwise miss.</p>
+<p><strong>Summary</strong>
+</p>
+<p>Regressions are powerful tools in applied math. Built from the fundamentals of probability and refined with calculus, they are used in a wide range of subjects. They have been used for centuries, and, despite their limitations, provide models that underpin many modern advancements. In fact, the field of regression analysis is still developing new methods to overcome its limitations.</p>
+<p>And to think it all started with tracking a cosmic object through space!</p>
+<p></p>

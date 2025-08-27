@@ -76,7 +76,7 @@
 <h1>Finishing our Example</h1>
 <p>Let's apply this to our example. Since \(f(x)\) is a linear function, we can write it as \(f(x)=ax+b\) </p>
 <p>The residuals are then: \(r_i= ax_i+b-g(x_i)\).</p>
-<p>So the error function then becomes: riri2= xi (axi+b-g(xi))2= (0(a)+b -3 )2+(2(a)+b-5)2+ . . . +(11(a) +b-20)2</p>
+<p>So the error function then becomes: \(\sum_{i=1}^{n} r^2_i = \sum_{i=1}^{n} (ax_i+b-g(x_i))^2= (0(a)+b -3 )^2+((2)a+b-5)^2+ . . . +((11)a+b-20)^2\)</p>
 <p>Expanding and simplifying, we end up with a big quadratic expression in a and b:</p>
 <p>\(\sum_{i=1}^{n} r^2_i = 177a^2 + 46ab + 5b^2 - 652a - 94b + 615\). </p>
 <p>This large function traces out a multivariable function that looks a lot like a parabola. This shouldn’t be too surprising, given that our function contains the quadratic terms of a and b.</p>
@@ -93,9 +93,9 @@
     
 <h1>Revisiting the Method of Least Squares</h1>
 <p>So why does the method of least squares give us the Best Linear Unbiased Estimation (BLUE)?</p>
-<p>Let \(mu\) be the mean of the data set. Then, the variance of the system is defined as:</p>
+<p>Let \(\mu\) be the mean of the data set. Then, the variance of the system is defined as:</p>
 <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe_OpwQd8qQeDyPxnmp-gZelw4jgRlq44EH6Q5h6Uvjx3FD2-OBCc4KIMCdnf3u8ICmQleRPZ9gee6fVcP9tcVoBdhY7X3TV2qrMSKNftA4Y5XrlWwlA82d8K3vQyaelvTqX8GTIw?key=Htpd89bIWzeNbhCquZM3fw">
-<p>Our \(mu = 0\), because our errors are unbiased. Since \(n\) is a constant, minimizing variance in our errors is the same as minimizing</p>
+<p>Our \(\mu = 0\), because our errors are unbiased. Since \(n\) is a constant, minimizing variance in our errors is the same as minimizing</p>
 <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeaNzPxKsWluLx-n3DI94yOQUyiIL0-fFR-gcXvNBNpH22OquzTPQJNb-x6vCiQpti7WxaH_cgeAx7jrECial2KwVoEp0GEAsFpbT8H6cL0J6OSXmaq3Pugpqd3rBURpSNkR-TT?key=Htpd89bIWzeNbhCquZM3fw">
 <p>which is our method of least squares, so our method minimizes variance.</p>
 <p>This might seem abstract, so maybe we should try a geometric view. In order to do this, we must introduce some matrix notation.</p>

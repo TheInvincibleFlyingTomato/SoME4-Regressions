@@ -1,6 +1,9 @@
 <p><strong>How to get a comet named after you ? </strong>
 </p>
-<p>William is an astronomer in the 1800s. Night after night, he collected data on a specific comet’s orbit, shown below.</p>
+<p>William is an astronomer in the 1800s. Night after night, he collected data on a specific comet’s orbit, shown below.
+    <br>
+</p>
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfyiuLTu-8vI4LlVnteEpWsa-MtcUgW3-BbpMXU-zWDG6QpSB824QaPhPuN3eGqKAcmjORIbv9Xk2TwZP6UKCodzKUFB7xVvqVGREFntglSYtNT6BjWvHvN2VeeKtTP48mld6mX?key=Htpd89bIWzeNbhCquZM3fw">
 <p>Will knows the orbit should be elliptical, but its exact shape is hard to determine. Soon, the comet will be blocked by the sun, and he won’t be able to directly measure its position. So, using his data, how could Will make a model to predict the comet’s orbit (and hopefully get a comet named after him)?</p>
 <p><strong>Regressions</strong>
 </p>
@@ -19,7 +22,7 @@
 <p>The goal: A regression equation that makes the error as small as possible, and fits the best.</p>
 <p><strong>Linear Regressions</strong>
 </p>
-<p>Let’s start simple. Imagine the comet is a freeflying comet, without gravity. Then it would drift out in a straight line, a much simpler path. For the sake of example, let the observations be p ={(0,3), (2, 5), (4, 9), (6,10), (11, 20)}. We can define a function g(x) that matches the data: g(0)= 3, g(2) = 5, and so on. Our goal is to find another function f(x) the error function between f(x) and g(x). But that raises the question:</p>
+<p>Let’s start simple. Imagine the comet is a free flying comet, without gravity. Then it would drift out in a straight line, a much simpler path. For the sake of example, let the observations be p ={(0,3), (2, 5), (4, 9), (6,10), (11, 20)}. We can define a function g(x) that matches the data: g(0)= 3, g(2) = 5, and so on. Our goal is to find another function f(x) the error function between f(x) and g(x). But that raises the question:</p>
 <p><em>What should the error function be”?</em>
 </p>
 <p>
@@ -46,8 +49,8 @@
 </p>
 <p><strong>Linear</strong>: The function is a linear combination of our input(s). Yes, you can do a regression using multiple input parameters. We will talk about this later.</p>
 <p><strong>Best</strong>: Among all the unbiased models, the one we want is the one with the smallest variance.. To understand why we want this, let's return back to targets.</p>
-<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe2o-1pg7BADm7NNlhcKmhejhk7KdFJqBq_qzCBSxVj-2wnOg1pv4jm9BhPjXNES-cc_NeiHWN4tY6b-0vCXVgSeEN5Gscx2xXxN07kJqj9ZCufSQ6XgzlCrbmEe9ZOJ1X5NXsnOg?key=Htpd89bIWzeNbhCquZM3fw">
 <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdX0R1teRJvQ6SWCHdY1uHFHuzYQJZKNSyAtGiyAvCtxJ9M7L9F0iBcpfUDigvOToo0i3jN-jC0gKn1AxD5JmDxhpg-8CXhPXoEaTLgnsuZ-sqaAjwWBc_fSG9qKOxXD9HAT4cxmQ?key=Htpd89bIWzeNbhCquZM3fw">
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcdoh7VjG05KqHXBNVHZXmmRBpJOwJvIKYJhwjjvqeDdorxR1-Fwp3vo3C41NandlpsqjuUmrfg27r3afVwxbL5bN0cV4c9tk26CQ5NbNbolaWkK-dFYzW70i_5HzLgFcmrpSN9kA?key=Htpd89bIWzeNbhCquZM3fw">
 <p>Again, pretend these two targets are our metaphor for the residuals. Notice how both of them are roughly centered around the origin, so both are unbiased. However, Team A’s shots are more tightly clustered, so there is less variance. This gives us more confidence in their accuracy, compared to Team C.</p>
 <p>We will revisit this idea of <em>Best</em> later. An intuitive proof requires a matrix representation, which may be complicated without an example.</p>
 <p>The main idea is we want our errors to cluster tightly around zero, like Team A’s shot clustering around the bullseye.</p>
@@ -76,15 +79,19 @@
 <p>To find our minimum point, we can set the partial derivatives of our function to 0 and solve.</p>
 <p>In the end, the solutions come out to be (549356,821356). Not the prettiest numbers, but it works as an example.</p>
 <p>Looking back at what this means, our desired linear regression is y=549356x+821356 ∎</p>
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcH3jINfht3xvlNEkQKp1s9kCudLVJ43qWjznzYEEGSoBfVL06ALYaJhjQTwxrkhsXyB5xdCbYBrULLrvKVKMmedQm0KDJCmfsymjmBkAqlg9ZzTeJ2fEAD5eXycE7VvIvf57uySA?key=Htpd89bIWzeNbhCquZM3fw">
 <p>A pretty good fit indeed!</p>
 <p><strong>Revisiting the Method of Least Squares</strong>
 </p>
 <p>So why does the method of least squares give us the Best Linear Unbiased Estimation (BLUE)?</p>
 <p>Let be the mean of the data set. Then, the variance of the system is defined as:</p>
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe_OpwQd8qQeDyPxnmp-gZelw4jgRlq44EH6Q5h6Uvjx3FD2-OBCc4KIMCdnf3u8ICmQleRPZ9gee6fVcP9tcVoBdhY7X3TV2qrMSKNftA4Y5XrlWwlA82d8K3vQyaelvTqX8GTIw?key=Htpd89bIWzeNbhCquZM3fw">
 <p>Our =0, because our errors are unbiased. Since n is a constant, minimizing variance in our errors is the same as minimizing</p>
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeaNzPxKsWluLx-n3DI94yOQUyiIL0-fFR-gcXvNBNpH22OquzTPQJNb-x6vCiQpti7WxaH_cgeAx7jrECial2KwVoEp0GEAsFpbT8H6cL0J6OSXmaq3Pugpqd3rBURpSNkR-TT?key=Htpd89bIWzeNbhCquZM3fw">
 <p>which is our method of least squares, so our method minimizes variance.</p>
 <p>This might seem abstract, so maybe we should try a geometric view. In order to do this, we must introduce some matrix notation.</p>
 <p>We have an output vector (our data), <strong>y</strong>, that is some linear function of an input matrix, <strong>X</strong>, offset by some errors . In the matrix form our system then can be written as: y = X+, where is the correlation we are trying to find. Our goal is to find y=X that best approximates our sample output set. This allows us to compactly write the whole data set in one equation. In the last example:</p>
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfDELcuM-o87BUmBJIP_-ULVSMFzBDJ1rLeXr3VRmnkn9gPbHvX1paDUBkmgCGShpMyPsvOpMkYyudFqxBJusFiCERdPnIa0iWe5F4yKc4KmeG_dV3dfAbmTIPbFIHa8gTBMGET?key=Htpd89bIWzeNbhCquZM3fw">
 <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXegBfS4YqXdt5NE4n47lITuU4D17jbZNkNta29VvMmNTAqt66CsyjfpxcUcFbWt7ZGaywDMiBq5y08ZxpLWrM8KCa_SLMYIWa2CYfSrI-zJOhNMqbk_78VmZt-C3ws3QNOqh7Q0?key=Htpd89bIWzeNbhCquZM3fw">
 <p>
     <br>
@@ -98,13 +105,8 @@
 <p>So, what if I want a quadratic regression? An exponential? Something even crazier?</p>
 <p>Let’s start with polynomials first. Notice that since our output can have n different inputs. If we let these be powers of xi, then the regression describes a polynomial. In other words, if we let</p>
 <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfGLveaNJouBiudZDJnUZtmmuHlnfUtCaU31K2dwoHxK2OIV_OcVZRkW9Vc6YntFwblofBdNUnTxE86W1dfxP6HoMTxVCyEC2o7O7igT5j-ONqLh5H-8yS83eLcVF6PaMhNl8eQBw?key=Htpd89bIWzeNbhCquZM3fw">
-<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdAvtSHy83bW_nAwg5jwKQgb5PtnHO3F7IgcgnWmORV80zEgjV2kxe0x3J9_8AxFNg3B4Qm4rTHgNj-hyzGNLtdE3m1z9jvFGIKgRLRK2JyYoVqI_Ucdioq3V4s8tZI4_5LSw3F?key=Htpd89bIWzeNbhCquZM3fw">
 <p>Then</p>
-<p>
-    <br>
-    <br>
-    <br>
-</p>
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdAvtSHy83bW_nAwg5jwKQgb5PtnHO3F7IgcgnWmORV80zEgjV2kxe0x3J9_8AxFNg3B4Qm4rTHgNj-hyzGNLtdE3m1z9jvFGIKgRLRK2JyYoVqI_Ucdioq3V4s8tZI4_5LSw3F?key=Htpd89bIWzeNbhCquZM3fw">
 <p>where xkT is the kth row of X. So, we can model any nth degree polynomial using this method.</p>
 <p>What about exponentials? Exponentials are not linear, so we can’t directly apply our standard linear least squares method. So, is that it? Is our method limited to polynomials and nothing else?</p>
 <p>

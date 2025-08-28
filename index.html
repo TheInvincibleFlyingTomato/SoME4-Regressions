@@ -10,7 +10,10 @@
         position: relative;
         left: 255px;
     }
-
+    img{
+        position: relative;
+        left: 255px;
+    }
     h1 {
         font-family: 'Trebuchet MS', sans-serif;
         position: relative;
@@ -29,7 +32,7 @@
 <p>William is an astronomer in the 1800s. Night after night, he collected data on a specific comet’s orbit, shown below.
     <br>
 </p>
-<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfyiuLTu-8vI4LlVnteEpWsa-MtcUgW3-BbpMXU-zWDG6QpSB824QaPhPuN3eGqKAcmjORIbv9Xk2TwZP6UKCodzKUFB7xVvqVGREFntglSYtNT6BjWvHvN2VeeKtTP48mld6mX?key=Htpd89bIWzeNbhCquZM3fw">
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfyiuLTu-8vI4LlVnteEpWsa-MtcUgW3-BbpMXU-zWDG6QpSB824QaPhPuN3eGqKAcmjORIbv9Xk2TwZP6UKCodzKUFB7xVvqVGREFntglSYtNT6BjWvHvN2VeeKtTP48mld6mX?key=Htpd89bIWzeNbhCquZM3fw" width = 700>
 <p>Will knows the orbit should be elliptical-ish, but its exact shape is hard to determine. Soon, the comet will be blocked by the sun, and he won’t be able to directly measure its position. So, using his data, how could Will make a model to predict the comet’s orbit (and hopefully get a comet named after him)?</p>
 
 <h1>Regressions</h1>
@@ -97,7 +100,7 @@
 <p>Expanding and simplifying, we end up with a big quadratic expression in a and b:</p>
 <p>\(\sum_{i=1}^{n} r^2_i = 177a^2 + 46ab + 5b^2 - 652a - 94b + 615\). </p>
 <p>This large function traces out a multivariable function that looks a lot like a parabola. This shouldn’t be too surprising, given that our function contains the quadratic terms of a and b.</p>
-<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdOMuI9Gg8i1ZCZuDZROJmGKjRRQLuztSOPXdibpxjGwN5DOnlPOS_5B-bmmob7Ka1ZVx4wGocXfG0tJFi9pDDGwJZSNz_RKgtZr5PR8sCZE0VSAVUqIGy3a6P7C9cq0Hpuejv9jA?key=Htpd89bIWzeNbhCquZM3fw">
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdOMuI9Gg8i1ZCZuDZROJmGKjRRQLuztSOPXdibpxjGwN5DOnlPOS_5B-bmmob7Ka1ZVx4wGocXfG0tJFi9pDDGwJZSNz_RKgtZr5PR8sCZE0VSAVUqIGy3a6P7C9cq0Hpuejv9jA?key=Htpd89bIWzeNbhCquZM3fw" width = 700>
 <p>
     <br>
     <br>
@@ -105,7 +108,7 @@
 <p>To find our minimum point, we can set the partial derivatives of our function to 0 and solve.</p>
 <p>In the end, the solutions come out to be \((\frac{549}{356},\frac{821}{356})\). Not the prettiest numbers, but it works as an example.</p>
 <p>Looking back at what this means, our desired linear regression is \(y=\frac{549}{356}x+\frac{821}{356}\) ∎</p>
-<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcH3jINfht3xvlNEkQKp1s9kCudLVJ43qWjznzYEEGSoBfVL06ALYaJhjQTwxrkhsXyB5xdCbYBrULLrvKVKMmedQm0KDJCmfsymjmBkAqlg9ZzTeJ2fEAD5eXycE7VvIvf57uySA?key=Htpd89bIWzeNbhCquZM3fw">
+<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcH3jINfht3xvlNEkQKp1s9kCudLVJ43qWjznzYEEGSoBfVL06ALYaJhjQTwxrkhsXyB5xdCbYBrULLrvKVKMmedQm0KDJCmfsymjmBkAqlg9ZzTeJ2fEAD5eXycE7VvIvf57uySA?key=Htpd89bIWzeNbhCquZM3fw" width = 400>
 <p>A pretty good fit indeed!</p>
     
 <h1>Revisiting the Method of Least Squares</h1>

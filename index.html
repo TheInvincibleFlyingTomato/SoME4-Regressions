@@ -3,8 +3,6 @@
 <head>
   <!-- MathJax -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <!-- Plotly -->
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
   <style>
     p {
@@ -41,73 +39,6 @@
     <li>An error function that gives you a measure of how “good” the prediction is for the data</li>
   </ul>
   <p>The goal: A regression equation that makes the error as small as possible, and fits the best.</p>
-
-  <p><em>Click on the graph below to add points. A best-fit line will appear automatically.</em></p>
-
-  <div id="plot" style="width:100%;height:500px;"></div>
-
-  <script>
-    let xs = [];
-    let ys = [];
-
-    function linearRegression(x, y) {
-      let n = x.length;
-      let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
-      for (let i = 0; i < n; i++) {
-        sumX += x[i];
-        sumY += y[i];
-        sumXY += x[i] * y[i];
-        sumX2 += x[i] * x[i];
-      }
-      let slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
-      let intercept = (sumY - slope * sumX) / n;
-      return { slope, intercept };
-    }
-
-    function updatePlot() {
-      let data = [{
-        x: xs,
-        y: ys,
-        mode: 'markers',
-        type: 'scatter',
-        name: 'Data Points'
-      }];
-
-      if (xs.length >= 2) {
-        let { slope, intercept } = linearRegression(xs, ys);
-        let xLine = [Math.min(...xs), Math.max(...xs)];
-        let yLine = xLine.map(x => slope * x + intercept);
-
-        data.push({
-          x: xLine,
-          y: yLine,
-          mode: 'lines',
-          type: 'scatter',
-          name: 'Best Fit Line'
-        });
-      }
-
-      let layout = {
-        title: "Click to Add Points",
-        dragmode: "click",   // makes clicking easier
-      };
-
-      Plotly.newPlot('plot', data, layout).then(plotDiv => {
-        plotDiv.on('plotly_click', function(evt){
-          let x = evt.points[0].x;
-          let y = evt.points[0].y;
-          xs.push(x);
-          ys.push(y);
-          updatePlot();
-        });
-      });
-    }
-
-    // Initial empty plot
-    updatePlot();
-  </script>
-</body>
-</html>
 
 
 <h1>Linear Regressions</h1>

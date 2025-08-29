@@ -52,69 +52,69 @@
 </ul>
 <p>The goal: A regression equation that makes the error as small as possible, and fits the best.</p>
     <label for="x">X:</label>
-  <input type="number" id="x">
-  <label for="y">Y:</label>
-  <input type="number" id="y">
-  <button onclick="addPoint()">Add Point</button>
+    <input type="number" id="x">
+    <label for="y">Y:</label>
+    <input type="number" id="y">
+    <button onclick="addPoint()">Add Point</button>
   
-  <div id="plot" style="width:600px;height:400px;"></div>
+    <div id="plot" style="width:600px;height:400px;"></div>
 
-  <script>
-    let xs = [];
-    let ys = [];
+    <script>
+        let xs = [];
+        let ys = [];
 
-    function addPoint() {
-      let x = parseFloat(document.getElementById("x").value);
-      let y = parseFloat(document.getElementById("y").value);
-      if (!isNaN(x) && !isNaN(y)) {
-        xs.push(x);
-        ys.push(y);
+        function addPoint() {
+          let x = parseFloat(document.getElementById("x").value);
+          let y = parseFloat(document.getElementById("y").value);
+          if (!isNaN(x) && !isNaN(y)) {
+            xs.push(x);
+            ys.push(y);
+            updatePlot();
+          }
+        }
+    
+        function linearRegression(x, y) {
+          let n = x.length;
+          let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
+          for (let i = 0; i < n; i++) {
+            sumX += x[i];
+            sumY += y[i];
+            sumXY += x[i] * y[i];
+            sumX2 += x[i] * x[i];
+          }
+          let slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+          let intercept = (sumY - slope * sumX) / n;
+          return { slope, intercept };
+        }
+    
+        function updatePlot() {
+          let data = [{
+            x: xs,
+            y: ys,
+            mode: 'markers',
+            type: 'scatter',
+            name: 'Data Points'
+          }];
+    
+          if (xs.length >= 2) {
+            let { slope, intercept } = linearRegression(xs, ys);
+            let xLine = [Math.min(...xs), Math.max(...xs)];
+            let yLine = xLine.map(x => slope * x + intercept);
+    
+            data.push({
+              x: xLine,
+              y: yLine,
+              mode: 'lines',
+              type: 'scatter',
+              name: 'Best Fit Line'
+            });
+          }
+    
+          Plotly.newPlot('plot', data);
+        }
+    
+        // Initial empty plot
         updatePlot();
-      }
-    }
-
-    function linearRegression(x, y) {
-      let n = x.length;
-      let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
-      for (let i = 0; i < n; i++) {
-        sumX += x[i];
-        sumY += y[i];
-        sumXY += x[i] * y[i];
-        sumX2 += x[i] * x[i];
-      }
-      let slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
-      let intercept = (sumY - slope * sumX) / n;
-      return { slope, intercept };
-    }
-
-    function updatePlot() {
-      let data = [{
-        x: xs,
-        y: ys,
-        mode: 'markers',
-        type: 'scatter',
-        name: 'Data Points'
-      }];
-
-      if (xs.length >= 2) {
-        let { slope, intercept } = linearRegression(xs, ys);
-        let xLine = [Math.min(...xs), Math.max(...xs)];
-        let yLine = xLine.map(x => slope * x + intercept);
-
-        data.push({
-          x: xLine,
-          y: yLine,
-          mode: 'lines',
-          type: 'scatter',
-          name: 'Best Fit Line'
-        });
-      }
-
-      Plotly.newPlot('plot', data);
-    }
-
-    // Initial empty plot
-    updatePlot();
   </script>
 
 <h1>Linear Regressions</h1>
